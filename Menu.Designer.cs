@@ -41,6 +41,7 @@
             // openImageDialog
             // 
             this.openImageDialog.Filter = "Image Files (*.png, *.jpg, *.jpeg) | *png; *.jpg; *.jpeg";
+            this.openImageDialog.Title = "Open Image to Pixel Sort";
             // 
             // selectImageButton
             // 

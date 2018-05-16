@@ -17,5 +17,7 @@ namespace PixelSorter
 
         public SortBy sortBy { get; set; }
         public SortType sortType { get; set; }
+        
+        public string fileName { get; set; }
     }
 }

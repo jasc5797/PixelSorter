@@ -37,6 +37,7 @@ namespace PixelSorter
             settings.OriginalImage = new Bitmap(imageFilePathTextBox.Text);
             settings.sortBy = (Settings.SortBy)sortByComboBox.SelectedIndex;
             settings.sortType = (Settings.SortType)sortTypeComboBox.SelectedIndex;
+            settings.fileName = Path.GetFileName(imageFilePathTextBox.Text);
             PixelSorter pixelSorter = new PixelSorter(settings);
             pixelSorter.Show();
             Hide();

@@ -15,13 +15,14 @@ namespace PixelSorter
     {
         public delegate void ProgressBarDelegate();
 
-        private Bitmap finalImage;
+        private Settings settings;
 
         public PixelSorter(Settings settings)
         {
+            this.settings = settings;
             Bitmap image = settings.OriginalImage;
             InitializeComponent();
-            finalImage = (Bitmap)image.Clone();
+            settings.SortedImage = (Bitmap)image.Clone();
             ThreadPool.GetAvailableThreads(out int workerThreads, out int completionPortThreads);
             Console.WriteLine("Worker Threads: " + workerThreads + " - Completion Port Threads: " + completionPortThreads);
 
@@ -84,10 +85,10 @@ namespace PixelSorter
                     switch (threadInfo.settings.sortType)
                     {
                         case Settings.SortType.Vertical:
-                            finalImage.SetPixel(index, i, colors[i]);
+                            settings.SortedImage.SetPixel(index, i, colors[i]);
                             break;
                         case Settings.SortType.Horizontal:
-                            finalImage.SetPixel(i, index, colors[i]);
+                            settings.SortedImage.SetPixel(i, index, colors[i]);
                             break;
                     }
                 }
@@ -118,7 +119,7 @@ namespace PixelSorter
             progressBar.Value++;
             if(progressBar.Value == progressBar.Maximum)
             {
-                ImageDisplay imageDisplay = new ImageDisplay(finalImage);
+                ImageDisplay imageDisplay = new ImageDisplay(settings);
                 imageDisplay.Show();
                 Hide();
             }
