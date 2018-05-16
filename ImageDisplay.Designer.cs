@@ -50,6 +50,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "ImageDisplay";
             this.Text = "ImageDisplay";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImageDisplay_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

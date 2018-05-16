@@ -17,5 +17,10 @@ namespace PixelSorter
             InitializeComponent();
             pictureBox1.Image = image;
         }
+
+        private void ImageDisplay_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

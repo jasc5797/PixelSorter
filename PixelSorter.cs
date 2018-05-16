@@ -22,11 +22,11 @@ namespace PixelSorter
             Bitmap image = settings.OriginalImage;
             InitializeComponent();
             finalImage = (Bitmap)image.Clone();
-            progressBar.Maximum = image.Width;
-
             ThreadPool.GetAvailableThreads(out int workerThreads, out int completionPortThreads);
             Console.WriteLine("Worker Threads: " + workerThreads + " - Completion Port Threads: " + completionPortThreads);
-            int value = settings.sortType == Settings.SortType.Horizontal ? image.Width : image.Height;
+
+            int value = settings.sortType == Settings.SortType.Horizontal ? image.Height : image.Width;
+            progressBar.Maximum = value;
             for (int index = 0; index < value; index++)
             {
                 ThreadInfo threadInfo = new ThreadInfo();
@@ -48,15 +48,15 @@ namespace PixelSorter
             switch (threadInfo.settings.sortType)
             {
                 case Settings.SortType.Horizontal:
-                    for (int column = 0; column < image.Height; column++)
+                    for (int column = 0; column < image.Width; column++)
                     {
-                        colors.Add(image.GetPixel(index, column));
+                        colors.Add(image.GetPixel(column, index));
                     }
                     break;
                 case Settings.SortType.Vertical:
-                    for (int row = 0; row < image.Width; row++)
+                    for (int row = 0; row < image.Height; row++)
                     {
-                        colors.Add(image.GetPixel(row, index));
+                        colors.Add(image.GetPixel(index, row));
                     }
                     break;
             }
@@ -84,10 +84,10 @@ namespace PixelSorter
                     switch (threadInfo.settings.sortType)
                     {
                         case Settings.SortType.Vertical:
-                            finalImage.SetPixel(i, index, colors[i]);
+                            finalImage.SetPixel(index, i, colors[i]);
                             break;
                         case Settings.SortType.Horizontal:
-                            finalImage.SetPixel(index, i, colors[i]);
+                            finalImage.SetPixel(i, index, colors[i]);
                             break;
                     }
                 }
@@ -122,6 +122,11 @@ namespace PixelSorter
                 imageDisplay.Show();
                 Hide();
             }
+        }
+
+        private void PixelSorter_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 

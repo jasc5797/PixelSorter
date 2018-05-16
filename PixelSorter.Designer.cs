@@ -46,6 +46,7 @@
             this.Controls.Add(this.progressBar);
             this.Name = "PixelSorter";
             this.Text = "PixelSorter";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PixelSorter_FormClosing);
             this.ResumeLayout(false);
 
         }
