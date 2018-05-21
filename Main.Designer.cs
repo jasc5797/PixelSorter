@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.openImageButton = new System.Windows.Forms.ToolStripButton();
             this.saveImageButton = new System.Windows.Forms.ToolStripButton();
@@ -66,7 +65,6 @@
             // openImageButton
             // 
             this.openImageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.openImageButton.Image = ((System.Drawing.Image)(resources.GetObject("openImageButton.Image")));
             this.openImageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openImageButton.Name = "openImageButton";
             this.openImageButton.Size = new System.Drawing.Size(76, 22);
@@ -76,7 +74,6 @@
             // saveImageButton
             // 
             this.saveImageButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.saveImageButton.Image = ((System.Drawing.Image)(resources.GetObject("saveImageButton.Image")));
             this.saveImageButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveImageButton.Name = "saveImageButton";
             this.saveImageButton.Size = new System.Drawing.Size(71, 22);
@@ -116,11 +113,11 @@
             // 
             this.sortButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.sortButton.Enabled = false;
-            this.sortButton.Image = ((System.Drawing.Image)(resources.GetObject("sortButton.Image")));
             this.sortButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sortButton.Name = "sortButton";
             this.sortButton.Size = new System.Drawing.Size(32, 22);
             this.sortButton.Text = "Sort";
+            this.sortButton.Click += new System.EventHandler(this.sortButton_Click);
             // 
             // pictureBox
             // 
