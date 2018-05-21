@@ -79,7 +79,6 @@ namespace PixelSorter
             }
             lock (this)
             {
-
                 for (int i = 0; i < colors.Count; i++)
                 {
                     switch (threadInfo.settings.sortType)
@@ -92,7 +91,6 @@ namespace PixelSorter
                             break;
                     }
                 }
-
             }
 
             try
