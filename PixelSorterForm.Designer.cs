@@ -1,6 +1,6 @@
 ﻿namespace PixelSorter
 {
-    partial class PixelSorter
+    partial class PixelSorterForm
     {
         /// <summary>
         /// Required designer variable.

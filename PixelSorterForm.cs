@@ -11,24 +11,24 @@ using System.Windows.Forms;
 
 namespace PixelSorter
 {
-    public partial class PixelSorter : Form
+    public partial class PixelSorterForm : Form
     {
         public delegate void ProgressBarDelegate();
 
-        private Settings settings;
+        private SortSettings settings;
 
         private bool stop;
 
-        public PixelSorter(Settings settings)
+        public PixelSorterForm(SortSettings settings)
         {
             InitializeComponent();
 
             this.settings = settings;
             stop = false;
-            Bitmap image = settings.OriginalImage;
-            settings.SortedImage = (Bitmap)image.Clone();
+            Bitmap image = settings.ImageOriginal;
+            settings.ImageSorted = (Bitmap)image.Clone();
 
-            int value = settings.SelectedSortDirection == Settings.SortDirection.Horizontal ? image.Height : image.Width;
+            int value = settings.SortDirectionSelection == SortSettings.SortDirection.Horizontal ? image.Height : image.Width;
             progressBar.Maximum = value;
             for (int index = 0; index < value; index++)
             {
@@ -48,15 +48,15 @@ namespace PixelSorter
 
             List<Color> colors = new List<Color>();
 
-            switch (threadInfo.Settings.SelectedSortDirection)
+            switch (threadInfo.Settings.SortDirectionSelection)
             {
-                case Settings.SortDirection.Horizontal:
+                case SortSettings.SortDirection.Horizontal:
                     for (int column = 0; column < image.Width; column++)
                     {
                         colors.Add(image.GetPixel(column, index));
                     }
                     break;
-                case Settings.SortDirection.Vertical:
+                case SortSettings.SortDirection.Vertical:
                     for (int row = 0; row < image.Height; row++)
                     {
                         colors.Add(image.GetPixel(index, row));
@@ -64,18 +64,18 @@ namespace PixelSorter
                     break;
             }
            
-            switch (threadInfo.Settings.SelectedSortBy)
+            switch (threadInfo.Settings.SortBySelection)
             {
-                case Settings.SortBy.Brightness:
+                case SortSettings.SortBy.Brightness:
                     colors.Sort(delegate (Color color1, Color color2) { return color1.GetBrightness().CompareTo(color2.GetBrightness()); });
                     break;
-                case Settings.SortBy.Luminance:
+                case SortSettings.SortBy.Luminance:
                     colors.Sort(delegate (Color color1, Color color2) { return GetRelativeLuminance(color1).CompareTo(GetRelativeLuminance(color2)); });
                     break;
-                case Settings.SortBy.Hue:
+                case SortSettings.SortBy.Hue:
                     colors.Sort(delegate (Color color1, Color color2) { return color1.GetHue().CompareTo(color2.GetHue()); });
                     break;
-                case Settings.SortBy.Saturation:
+                case SortSettings.SortBy.Saturation:
                     colors.Sort(delegate (Color color1, Color color2) { return color1.GetSaturation().CompareTo(color2.GetSaturation()); });
                     break;
             }
@@ -83,13 +83,13 @@ namespace PixelSorter
             {
                 for (int i = 0; i < colors.Count && !stop; i++)
                 {
-                    switch (threadInfo.Settings.SelectedSortDirection)
+                    switch (threadInfo.Settings.SortDirectionSelection)
                     {
-                        case Settings.SortDirection.Vertical:
-                            settings.SortedImage.SetPixel(index, i, colors[i]);
+                        case SortSettings.SortDirection.Vertical:
+                            settings.ImageSorted.SetPixel(index, i, colors[i]);
                             break;
-                        case Settings.SortDirection.Horizontal:
-                            settings.SortedImage.SetPixel(i, index, colors[i]);
+                        case SortSettings.SortDirection.Horizontal:
+                            settings.ImageSorted.SetPixel(i, index, colors[i]);
                             break;
                     }
                 }
@@ -130,6 +130,6 @@ namespace PixelSorter
     {
         public Bitmap Image { get; set; }
         public int Index { get; set; }
-        public Settings Settings { get; set; }
+        public SortSettings Settings { get; set; }
     }
 }

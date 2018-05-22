@@ -1,6 +1,6 @@
 ﻿namespace PixelSorter
 {
-    partial class Main
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.openImageButton = new System.Windows.Forms.ToolStripButton();
             this.saveImageButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.sortByComboBox = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.sortDirectionComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.sortButton = new System.Windows.Forms.ToolStripButton();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.openImageDialog = new System.Windows.Forms.OpenFileDialog();
@@ -51,10 +48,6 @@
             this.openImageButton,
             this.saveImageButton,
             this.toolStripSeparator1,
-            this.toolStripLabel1,
-            this.sortByComboBox,
-            this.toolStripLabel2,
-            this.sortDirectionComboBox,
             this.sortButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -85,42 +78,11 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(47, 22);
-            this.toolStripLabel1.Text = "Sort By:";
-            // 
-            // sortByComboBox
-            // 
-            this.sortByComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sortByComboBox.Items.AddRange(new object[] {
-            "Luminance",
-            "Brightness",
-            "Saturation",
-            "Hue"});
-            this.sortByComboBox.Name = "sortByComboBox";
-            this.sortByComboBox.Size = new System.Drawing.Size(121, 25);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(82, 22);
-            this.toolStripLabel2.Text = "Sort Direction:";
-            // 
-            // sortDirectionComboBox
-            // 
-            this.sortDirectionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sortDirectionComboBox.Items.AddRange(new object[] {
-            "Horizontal",
-            "Vertical"});
-            this.sortDirectionComboBox.Name = "sortDirectionComboBox";
-            this.sortDirectionComboBox.Size = new System.Drawing.Size(121, 25);
-            // 
             // sortButton
             // 
             this.sortButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.sortButton.Enabled = false;
+            this.sortButton.Image = ((System.Drawing.Image)(resources.GetObject("sortButton.Image")));
             this.sortButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.sortButton.Name = "sortButton";
             this.sortButton.Size = new System.Drawing.Size(32, 22);
@@ -160,13 +122,9 @@
         private System.Windows.Forms.ToolStripButton openImageButton;
         private System.Windows.Forms.ToolStripButton saveImageButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripComboBox sortByComboBox;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.ToolStripComboBox sortDirectionComboBox;
-        private System.Windows.Forms.ToolStripButton sortButton;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.OpenFileDialog openImageDialog;
         private System.Windows.Forms.SaveFileDialog saveImageDialog;
+        private System.Windows.Forms.ToolStripButton sortButton;
     }
 }
