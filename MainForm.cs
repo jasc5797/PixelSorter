@@ -28,8 +28,7 @@ namespace PixelSorter
         {
             if (openImageDialog.ShowDialog() == DialogResult.OK)
             {
-                string filePath = openImageDialog.FileName;
-                pictureBox.ImageLocation = filePath;
+                pictureBox.Image = Image.FromFile(openImageDialog.FileName);
                 sortButton.Enabled = true;
             }
         }
