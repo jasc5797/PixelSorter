@@ -94,6 +94,11 @@
             // sortByComboBox
             // 
             this.sortByComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sortByComboBox.Items.AddRange(new object[] {
+            "Luminance",
+            "Brightness",
+            "Saturation",
+            "Hue"});
             this.sortByComboBox.Name = "sortByComboBox";
             this.sortByComboBox.Size = new System.Drawing.Size(121, 25);
             // 
@@ -106,6 +111,9 @@
             // sortDirectionComboBox
             // 
             this.sortDirectionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sortDirectionComboBox.Items.AddRange(new object[] {
+            "Horizontal",
+            "Vertical"});
             this.sortDirectionComboBox.Name = "sortDirectionComboBox";
             this.sortDirectionComboBox.Size = new System.Drawing.Size(121, 25);
             // 

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PixelSorter
@@ -17,7 +11,9 @@ namespace PixelSorter
         public Main()
         {
             InitializeComponent();
-            
+            settings = new Settings();
+            sortByComboBox.SelectedIndex = 0;
+            sortDirectionComboBox.SelectedIndex = 0;
         }
 
         private void openImageButton_Click(object sender, EventArgs e)
@@ -40,13 +36,14 @@ namespace PixelSorter
 
         private void sortButton_Click(object sender, EventArgs e)
         {
-            Settings settings = new Settings();
-            settings.OriginalImage = new Bitmap(imageFilePathTextBox.Text);
-            settings.sortBy = (Settings.SortBy)sortByComboBox.SelectedIndex;
-            settings.sortType = (Settings.SortType)sortTypeComboBox.SelectedIndex;
-            settings.fileName = Path.GetFileName(imageFilePathTextBox.Text);
+            settings.OriginalImage = (Bitmap)pictureBox.Image;
+            settings.SelectedSortBy = (Settings.SortBy)sortByComboBox.SelectedIndex;
+            settings.SelectedSortDirection = (Settings.SortDirection)sortDirectionComboBox.SelectedIndex;
             PixelSorter pixelSorter = new PixelSorter(settings);
-            pixelSorter.Show();
+            if(pixelSorter.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox.Image = settings.SortedImage;
+            }
         }
     }
 }

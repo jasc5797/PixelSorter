@@ -10,14 +10,12 @@ namespace PixelSorter
     public class Settings
     {
         public enum SortBy { Luminance, Brightness, Saturation, Hue }
-        public enum SortType { Horizontal, Vertical, Both }
+        public enum SortDirection { Horizontal, Vertical }
 
         public Bitmap OriginalImage { get; set; }
         public Bitmap SortedImage { get; set; }
 
-        public SortBy sortBy { get; set; }
-        public SortType sortType { get; set; }
-        
-        public string fileName { get; set; }
+        public SortBy SelectedSortBy { get; set; }
+        public SortDirection SelectedSortDirection { get; set; }
     }
 }
