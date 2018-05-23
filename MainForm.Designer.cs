@@ -99,14 +99,14 @@
             this.pictureBox.TabIndex = 1;
             this.pictureBox.TabStop = false;
             // 
-            // Main
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "Main";
+            this.Name = "MainForm";
             this.Text = "Pixel Sort";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
