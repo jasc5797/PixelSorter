@@ -99,6 +99,10 @@
             this.pictureBox.TabIndex = 1;
             this.pictureBox.TabStop = false;
             // 
+            // saveImageDialog
+            // 
+            this.saveImageDialog.Filter = "Image Files|*.png";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

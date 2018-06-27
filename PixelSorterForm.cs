@@ -35,7 +35,7 @@ namespace PixelSorter
                 ThreadInfo threadInfo = new ThreadInfo();
                 threadInfo.Image = (Bitmap)image.Clone();
                 threadInfo.Index = index;
-                threadInfo.Settings = settings;
+                threadInfo.Settings = (SortSettings)settings.Clone();
                 ThreadPool.QueueUserWorkItem(new WaitCallback(Process), threadInfo);
             }  
         }
@@ -63,22 +63,8 @@ namespace PixelSorter
                     }
                     break;
             }
-           
-            switch (threadInfo.Settings.SortBySelection)
-            {
-                case SortSettings.SortBy.Brightness:
-                    colors.Sort(delegate (Color color1, Color color2) { return color1.GetBrightness().CompareTo(color2.GetBrightness()); });
-                    break;
-                case SortSettings.SortBy.Luminance:
-                    colors.Sort(delegate (Color color1, Color color2) { return GetRelativeLuminance(color1).CompareTo(GetRelativeLuminance(color2)); });
-                    break;
-                case SortSettings.SortBy.Hue:
-                    colors.Sort(delegate (Color color1, Color color2) { return color1.GetHue().CompareTo(color2.GetHue()); });
-                    break;
-                case SortSettings.SortBy.Saturation:
-                    colors.Sort(delegate (Color color1, Color color2) { return color1.GetSaturation().CompareTo(color2.GetSaturation()); });
-                    break;
-            }
+
+            PixelSort(threadInfo.Settings, colors);
             lock (this)
             {
                 for (int i = 0; i < colors.Count && !stop; i++)
@@ -103,6 +89,60 @@ namespace PixelSorter
             {
                 Console.WriteLine(ex);
             }  
+        }
+
+        private List<Color> PixelSort(SortSettings settings, List<Color> colors)
+        {
+            switch (settings.IntervalTypeSelection)
+            {
+                case SortSettings.IntervalType.Disabled:
+                    Sort(settings, colors);
+                    break;
+                case SortSettings.IntervalType.FromPixel:
+                case SortSettings.IntervalType.WholeImage:
+                    SortInterval(settings, colors);
+                    break;
+            }
+            return colors;
+        }
+
+        private List<Color> SortInterval(SortSettings settings, List<Color> colors)
+        {
+            switch (settings.IntervalTypeSelection)
+            {
+                case SortSettings.IntervalType.FromPixel:
+                    break;
+                case SortSettings.IntervalType.WholeImage:
+                    double subArrayLength = settings.ImageOriginal.Width / settings.Interval;
+                    for (int i = 0; i < settings.ImageOriginal.Width; i += settings.Interval)
+                    {
+                        int length = i + settings.Interval > settings.ImageOriginal.Width ? settings.ImageOriginal.Width - i : settings.Interval;
+                        Sort(settings, colors.GetRange(i, length));
+                       
+                    }
+                    break;
+            }
+            return colors;
+        }
+
+        private List<Color> Sort(SortSettings settings, List<Color > colors)
+        {
+            switch (settings.SortBySelection)
+            {
+                case SortSettings.SortBy.Brightness:
+                    colors.Sort(delegate (Color color1, Color color2) { return color1.GetBrightness().CompareTo(color2.GetBrightness()); });
+                    break;
+                case SortSettings.SortBy.Luminance:
+                    colors.Sort(delegate (Color color1, Color color2) { return GetRelativeLuminance(color1).CompareTo(GetRelativeLuminance(color2)); });
+                    break;
+                case SortSettings.SortBy.Hue:
+                    colors.Sort(delegate (Color color1, Color color2) { return color1.GetHue().CompareTo(color2.GetHue()); });
+                    break;
+                case SortSettings.SortBy.Saturation:
+                    colors.Sort(delegate (Color color1, Color color2) { return color1.GetSaturation().CompareTo(color2.GetSaturation()); });
+                    break;
+            }
+            return colors;
         }
 
         private double GetRelativeLuminance(Color color)

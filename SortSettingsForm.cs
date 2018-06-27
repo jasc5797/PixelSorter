@@ -23,6 +23,7 @@ namespace PixelSorter
             intervalTypeComboBox.DataSource = SortSettings.GetEnumAsDataSource(typeof(SortSettings.IntervalType));
 
             previewPictureBox.Image = image;
+            intervalUpDown.Maximum = Math.Max(image.Width, image.Height); // Change to hypotemus for angles
         }
 
         private void startButton_Click(object sender, EventArgs e)
@@ -34,8 +35,9 @@ namespace PixelSorter
                 SortDirectionSelection = (SortSettings.SortDirection)sortDirectionComboBox.SelectedIndex,
                 IntervalTypeSelection = (SortSettings.IntervalType)intervalTypeComboBox.SelectedIndex,
                 Angle = (int)angleUpDown.Value,
-                Interval = (int)intervalUpDown.Value
-            };
+                Interval = (int)intervalUpDown.Value,
+                IsRandomInterval = randomIntervalCheckBox.Checked
+        };
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -57,7 +59,9 @@ namespace PixelSorter
         /// <param name="e"></param>
         private void intervalTypeComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            intervalUpDown.Enabled = ((ComboBox)sender).SelectedIndex != (int)SortSettings.IntervalType.Disabled;
+            bool enabled = ((ComboBox)sender).SelectedIndex != (int)SortSettings.IntervalType.Disabled;
+            intervalUpDown.Enabled = enabled;
+            randomIntervalCheckBox.Enabled = enabled;
         }
 
     }

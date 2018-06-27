@@ -20,7 +20,7 @@ namespace PixelSorter
                 if (pixelSorterForm.ShowDialog() == DialogResult.OK)
                 {
                     pictureBox.Image = sortSettingsForm.Settings.ImageSorted;
-                }
+                } 
             }
         }
 

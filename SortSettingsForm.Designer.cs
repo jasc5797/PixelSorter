@@ -42,6 +42,8 @@
             this.intervalUpDown = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.openImageDialog = new System.Windows.Forms.OpenFileDialog();
+            this.randomIntervalCheckBox = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.angleUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.intervalUpDown)).BeginInit();
@@ -95,7 +97,7 @@
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(237, 331);
+            this.startButton.Location = new System.Drawing.Point(237, 351);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(80, 23);
             this.startButton.TabIndex = 14;
@@ -162,9 +164,19 @@
             0,
             0,
             0});
+            this.intervalUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.intervalUpDown.Name = "intervalUpDown";
             this.intervalUpDown.Size = new System.Drawing.Size(121, 20);
             this.intervalUpDown.TabIndex = 25;
+            this.intervalUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label6
             // 
@@ -175,11 +187,31 @@
             this.label6.TabIndex = 24;
             this.label6.Text = "Interval Length:";
             // 
-            // SortingOptionsMenu
+            // randomIntervalCheckBox
+            // 
+            this.randomIntervalCheckBox.AutoSize = true;
+            this.randomIntervalCheckBox.Location = new System.Drawing.Point(302, 331);
+            this.randomIntervalCheckBox.Name = "randomIntervalCheckBox";
+            this.randomIntervalCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.randomIntervalCheckBox.TabIndex = 26;
+            this.randomIntervalCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 331);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(81, 13);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "Interval Length:";
+            // 
+            // SortSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(329, 363);
+            this.ClientSize = new System.Drawing.Size(329, 384);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.randomIntervalCheckBox);
             this.Controls.Add(this.intervalUpDown);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.intervalTypeComboBox);
@@ -195,7 +227,7 @@
             this.Controls.Add(this.previewPictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "SortingOptionsMenu";
+            this.Name = "SortSettingsForm";
             this.Text = "SortingOptionsMenu";
             ((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.angleUpDown)).EndInit();
@@ -221,5 +253,7 @@
         private System.Windows.Forms.NumericUpDown intervalUpDown;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.OpenFileDialog openImageDialog;
+        private System.Windows.Forms.CheckBox randomIntervalCheckBox;
+        private System.Windows.Forms.Label label7;
     }
 }

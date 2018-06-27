@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PixelSorter
 {
-    public class SortSettings
+    public class SortSettings : ICloneable
     {
         /// <summary>
         /// Settings that the user can choose when pixel sorting an image
@@ -25,6 +25,8 @@ namespace PixelSorter
 
         public int Angle { get; set; }
         public int Interval { get; set; }
+
+        public bool IsRandomInterval { get; set;  }
 
         /// <summary>
         /// Given an enum type get a human readable list of values from the enum that can be used as a data source
@@ -66,6 +68,20 @@ namespace PixelSorter
                 }
             }
             return name;
+        }
+
+        public virtual object Clone() {
+            return new SortSettings
+            {
+                ImageOriginal = (Bitmap)ImageOriginal.Clone(),
+                ImageSorted = ImageSorted,
+                SortBySelection = SortBySelection,
+                SortDirectionSelection = SortDirectionSelection,
+                IntervalTypeSelection = IntervalTypeSelection,
+                Angle = Angle,
+                Interval = Interval,
+                IsRandomInterval = IsRandomInterval
+            };
         }
     }
 }
